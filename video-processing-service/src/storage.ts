@@ -5,8 +5,8 @@ import { raw } from "express";
 
 const storage = new Storage();
 
-const rawVideoBucketName = "kvp1128-ytc-raw-videos";
-const processedVideoBucketName = "kvp1128-ytc-processed-videos";
+const rawVideoBucketName = "11kvp1128-ytc-raw-videos";
+const processedVideoBucketName = "11kvp1128-ytc-processed-videos";
 
 const localRawVideoPath = "./raw-videos";
 const localProcessedVideoPath = "./processed-videos";
