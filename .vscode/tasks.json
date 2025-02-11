@@ -1,0 +1,14 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "install",
+			"path": "yt-web-client",
+			"group": "clean",
+			"problemMatcher": [],
+			"label": "npm: install - yt-web-client",
+			"detail": "install dependencies from package"
+		}
+	]
+}

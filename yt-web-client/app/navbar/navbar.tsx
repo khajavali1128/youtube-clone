@@ -22,13 +22,16 @@ export default function Navbar() {
         return () => unsubscribe();
     }, []);
 
-  return (
-    <nav className={styles.nav}>
-      <Link href="/">
-        <Image width={90} height={20}
-          src="/youtube-logo.svg" alt="YouTube Logo"/>
-      </Link>
-      <SignIn user={user} />
-    </nav>
-  );
+    return (
+      <nav className={styles.nav}>
+        <Link href="/">
+          <Image width={90} height={20}
+            src="/youtube-logo.svg" alt="YouTube Logo"/>
+        </Link>
+        { 
+          user && <Upload />
+        }
+        <SignIn user={user} />
+      </nav>
+    );
 }

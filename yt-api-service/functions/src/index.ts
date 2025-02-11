@@ -10,7 +10,7 @@ initializeApp();
 const firestore = new Firestore();
 const storage = new Storage();
 
-const rawVideoBucketName = "nc-yt-raw-videos";
+const rawVideoBucketName = "11kvp1128-ytc-raw-videos";
 
 
 export const createUser = functions.auth.user().onCreate((user) => {
@@ -40,13 +40,32 @@ export const generateUploadUrl = onCall({maxInstances: 1}, async (request) => {
 
   // Generate a unique filename for upload
   const fileName = `${auth.uid}-${Date.now()}.${data.fileExtension}`;
+  //const fileType = data.fileType;
 
   // Get a v4 signed URL for uploading file
   const [url] = await bucket.file(fileName).getSignedUrl({
     version: "v4",
     action: "write",
     expires: Date.now() + 15 * 60 * 1000, // 15 minutes
+    //contentType: fileType,
   });
 
   return {url, fileName};
+});
+
+const videoCollectionId = "videos";
+
+export interface Video {
+  id?: string,
+  uid?: string,
+  filename?: string,
+  status?: "processing" | "processed",
+  title?: string,
+  description?: string
+}
+
+export const getVideos = onCall({maxInstances: 1}, async () => {
+  const querySnapshot =
+    await firestore.collection(videoCollectionId).limit(10).get();
+  return querySnapshot.docs.map((doc) => doc.data());
 });
